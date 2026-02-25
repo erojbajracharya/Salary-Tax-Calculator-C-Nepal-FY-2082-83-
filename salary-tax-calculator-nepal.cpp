@@ -106,20 +106,6 @@ class SingleEmployee: public Employee{
         }
         return tax;
     }
-
-    void displayTax(){
-        double tax = calculateTax();
-        cout << "\n========================================\n";
-        cout << "       TAX CALCULATION (SINGLE)         \n";
-        cout << "========================================\n";
-
-        if(hasSSF()){
-            cout << "\nNote: SSF paid - 1% Social Security Tax waived\n";
-        }
-
-        cout << "\nNet Tax Liability (Monthly):  Rs. " << (tax / 12) << endl;
-        cout << "Net Tax Liability (Yearly):   Rs. " << tax << endl;
-    }
 };
 
 class MarriedEmployee: public Employee{
@@ -175,20 +161,6 @@ class MarriedEmployee: public Employee{
         }
         return tax;
     }
-
-    void displayTax(){
-        double tax = calculateTax();
-        cout << "\n========================================\n";
-        cout << "       TAX CALCULATION (MARRIED)        \n";
-        cout << "========================================\n";
-
-        if(hasSSF()){
-            cout << "\nNote: SSF paid - 1% Social Security Tax waived\n";
-        }
-
-        cout << "\nNet Tax Liability (Monthly):  Rs. " << (tax / 12) << endl;
-        cout << "Net Tax Liability (Yearly):   Rs. " << tax << endl;
-    }
 };
 
 int main(){
@@ -241,12 +213,24 @@ int main(){
     if(choice == 1){
         SingleEmployee emp(monthly, bonus, ssf, epf, cit, insurance);
         emp.displayIncome();
-        emp.displayTax();
+        double tax = emp.calculateTax();
+        cout << "\n=======================================\n";
+        cout << "       TAX CALCULATION       \n";
+        cout << "========================================\n";
+
+        cout << "\nNet Tax Liability (Monthly):  Rs. " << (tax / 12) << endl;
+        cout << "Net Tax Liability (Yearly):   Rs. " << tax << endl;
     }
     else{
         MarriedEmployee emp(monthly, bonus, ssf, epf, cit, insurance);
         emp.displayIncome();
-        emp.displayTax();
+        double tax = emp.calculateTax();
+        cout << "\n=======================================\n";
+        cout << "       TAX CALCULATION       \n";
+        cout << "========================================\n";
+
+        cout << "\nNet Tax Liability (Monthly):  Rs. " << (tax / 12) << endl;
+        cout << "Net Tax Liability (Yearly):   Rs. " << tax << endl;
     }
     cout << "\n========================================\n";
     return 0;
